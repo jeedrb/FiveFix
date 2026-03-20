@@ -41,42 +41,27 @@ public class FiveFixTickHandler implements ITickHandler {
         }
     }
 
-    private void invSwap(GuiContainer currentGui, int slot) {
-        Minecraft theCraft = Minecraft.getMinecraft();
-
+    private void invSwap(GuiContainer gui, int slot) {
+        Minecraft mc = Minecraft.getMinecraft();
         try {
-            // 1. Get the 'theSlot' field (the slot under the mouse)
-            // In 1.5.2 MCP mappings, this is "theSlot" or field_74192_v
-            java.lang.reflect.Field slotField;
-            try {
-                slotField = net.minecraft.client.gui.inventory.GuiContainer.class.getDeclaredField("theSlot");
-            } catch (NoSuchFieldException e) {
-                slotField = net.minecraft.client.gui.inventory.GuiContainer.class.getDeclaredField("field_74192_v");
+            net.minecraft.inventory.Slot hoverSlot = null;
+            net.minecraft.inventory.Container container = null;
+
+            for (java.lang.reflect.Field f : GuiContainer.class.getDeclaredFields()) {
+                f.setAccessible(true);
+                if (hoverSlot == null && f.getType() == net.minecraft.inventory.Slot.class) {
+                    hoverSlot = (net.minecraft.inventory.Slot) f.get(gui);
+                }
+                if (container == null && f.getType() == net.minecraft.inventory.Container.class) {
+                    container = (net.minecraft.inventory.Container) f.get(gui);
+                }
+                if (hoverSlot != null && container != null) break;
             }
 
-            slotField.setAccessible(true);
-            net.minecraft.inventory.Slot hoverSlot = (net.minecraft.inventory.Slot) slotField.get(currentGui);
-
-            if (hoverSlot != null) {
-                // 2. Get the 'inventorySlots' field (the Container itself)
-                // In 1.5.2 MCP, this is "inventorySlots" or field_74188_l
-                java.lang.reflect.Field containerField;
-                try {
-                    containerField = net.minecraft.client.gui.inventory.GuiContainer.class.getDeclaredField("inventorySlots");
-                } catch (NoSuchFieldException e) {
-                    containerField = net.minecraft.client.gui.inventory.GuiContainer.class.getDeclaredField("field_74188_l");
-                }
-                containerField.setAccessible(true);
-                net.minecraft.inventory.Container container = (net.minecraft.inventory.Container) containerField.get(currentGui);
-
-                // 3. Perform the window click (Mode 2 = Hotbar Swap)
-                if (container != null) {
-                    theCraft.playerController.windowClick(container.windowId, hoverSlot.slotNumber, slot, 2, theCraft.thePlayer);
-                }
+            if (hoverSlot != null && container != null) {
+                mc.playerController.windowClick(container.windowId, hoverSlot.slotNumber, slot, 2, mc.thePlayer);
             }
-        } catch (Exception e) {
-            FiveFix.LOGGER.warning("Failed to swap item: " + e.getMessage());
-        }
+        } catch (Exception ignored) {}
     }
 
     @Override

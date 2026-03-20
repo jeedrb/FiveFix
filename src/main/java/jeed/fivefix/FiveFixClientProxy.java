@@ -41,7 +41,7 @@ public class FiveFixClientProxy extends FiveFixCommonProxy {
 //        };
 
         for (int i = 0; i < 9; i++)
-            hotbarBinds[i] = new KeyBinding("FiveFix Slot " + (i + 1), (i + 2));
+            hotbarBinds[i] = new KeyBinding("Hotbar Slot " + (i + 1), (i + 2));
 
         KeyBindingRegistry.registerKeyBinding(new FiveFixKeyHandler());
         TickRegistry.registerTickHandler(new FiveFixTickHandler(), Side.CLIENT);
