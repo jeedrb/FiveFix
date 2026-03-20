@@ -1,17 +1,27 @@
 package jeed.fivefix;
 
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+
+import java.util.logging.Logger;
 
 @Mod(modid = "fivefix", name = "FiveFix", version = "0.0.1")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class FiveFix {
-    @Mod.Instance("fivefix")
-    public static FiveFix instance;
+    public static final Logger LOGGER = Logger.getLogger("fivefix");
 
-    @Mod.Init
-    public void init(FMLInitializationEvent event) {
-        System.out.println("i had such a great time getting this environment working!");
+    @SidedProxy(clientSide = "jeed.fivefix.FiveFixClientProxy", serverSide = "jeed.fivefix.FiveFixCommonProxy")
+    public static FiveFixCommonProxy proxy;
+
+    public FiveFix() {
+        LOGGER.setParent(FMLLog.getLogger());
+        LOGGER.info("Hello, constructor!");
+    }
+
+    @Mod.PreInit
+    public void preinit(FMLPreInitializationEvent e) {
+        LOGGER.info("Hello, preinit!");
+        proxy.hi();
     }
 }
