@@ -2,6 +2,8 @@ package jeed.fivefix;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
+import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.relauncher.Side;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.EnumOptions;
 import net.minecraft.client.settings.KeyBinding;
@@ -42,5 +44,6 @@ public class FiveFixClientProxy extends FiveFixCommonProxy {
             hotbarBinds[i] = new KeyBinding("FiveFix Slot " + (i + 1), (i + 2));
 
         KeyBindingRegistry.registerKeyBinding(new FiveFixKeyHandler());
+        TickRegistry.registerTickHandler(new FiveFixTickHandler(), Side.CLIENT);
     }
 }

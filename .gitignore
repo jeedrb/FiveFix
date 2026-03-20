@@ -1,4 +1,4 @@
-# Core Junk
+# normal stuff
 .gradle/
 build/
 bin/
@@ -8,7 +8,7 @@ out/
 *.iws
 *.ipr
 
-# Minecraft & Voldeloom Assets (The 700+ files)
+# assets i can't distribute obviously
 run/
 assets/
 lib/
@@ -18,6 +18,6 @@ natives/
 *.jar
 *.zip
 
-# Logs and temp files
+# logs and whatever
 *.log
 *.txt
