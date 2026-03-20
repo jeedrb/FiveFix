@@ -44,10 +44,15 @@ public class FiveFixClientProxy extends FiveFixCommonProxy {
         for (int i = 0; i < 9; i++) // loop to set default hotbar binds
             hotbarBinds[i] = new KeyBinding("Hotbar Slot " + (i + 1), (i + 2));
 
-        bindF5 = new KeyBinding("Perspective", 63); // default F5 bind
-        bindF3 = new KeyBinding("Debug", 61); // default F3 bind
-
-        KeyBindingRegistry.registerKeyBinding(new FiveFixHotbarKeyHandler());
+        // register hotbar bind stuff and use the classes and whatever
+        KeyBindingRegistry.instance().registerKeyBinding(new FiveFixHotbarKeyHandler());
         TickRegistry.registerTickHandler(new FiveFixTickHandler(), Side.CLIENT);
+
+        // set default F5 and F3 binds
+        bindF5 = new KeyBinding("Perspective", 63);
+        bindF3 = new KeyBinding("Debug", 61);
+
+        KeyBinding[] utilBinds = {bindF5, bindF3};
+        KeyBindingRegistry.instance().registerKeyBinding(new FiveFixUtilKeyHandler(utilBinds));
     }
 }

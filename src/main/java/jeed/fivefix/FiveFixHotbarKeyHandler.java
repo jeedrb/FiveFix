@@ -14,11 +14,11 @@ public class FiveFixHotbarKeyHandler extends KeyHandler {
 
     @Override
     public String getLabel() {
-        return "FiveFixHandler";
+        return "FiveFixHotbarKeyHandler";
     }
 
     @Override
-    public void keyDown(EnumSet<TickType> types, KeyBinding bind, boolean tickEnd, boolean isRepeat) {
+    public void keyDown(EnumSet<TickType> types, KeyBinding pressed, boolean tickEnd, boolean isRepeat) {
         Minecraft theCraft = Minecraft.getMinecraft();
 
         // only run when possible and once per game bla bla bla
@@ -27,7 +27,7 @@ public class FiveFixHotbarKeyHandler extends KeyHandler {
             // not in a menu
             if (theCraft.currentScreen == null) {
                 for (int i = 0; i < 9; i++) {
-                    if (bind == FiveFixClientProxy.hotbarBinds[i]) {
+                    if (pressed == FiveFixClientProxy.hotbarBinds[i]) {
                         theCraft.thePlayer.inventory.currentItem = i;
                         break;
                     }
