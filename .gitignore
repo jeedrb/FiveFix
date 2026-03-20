@@ -4,6 +4,8 @@ build/
 bin/
 out/
 .idea/
+.java/
+
 *.iml
 *.iws
 *.ipr
