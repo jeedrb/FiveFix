@@ -3,13 +3,12 @@ package jeed.fivefix;
 import cpw.mods.fml.client.registry.KeyBindingRegistry.KeyHandler;
 import cpw.mods.fml.common.TickType;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.settings.KeyBinding;
 import java.util.EnumSet;
 
-public class FiveFixKeyHandler extends KeyHandler {
+public class FiveFixHotbarKeyHandler extends KeyHandler {
 
-    public FiveFixKeyHandler() {
+    public FiveFixHotbarKeyHandler() {
         super(FiveFixClientProxy.hotbarBinds, new boolean[9]);
     }
 

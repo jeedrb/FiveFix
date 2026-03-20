@@ -18,7 +18,8 @@ public class FiveFixClientProxy extends FiveFixCommonProxy {
         target = EnumOptions.values();
     }
 
-    public static KeyBinding[] hotbarBinds = new KeyBinding[9];
+    public static KeyBinding[] hotbarBinds = new KeyBinding[9]; // hotbar bind array
+    public static KeyBinding bindF5, bindF3; // perspective and debug binds
 
     @Override
     public void hi() {
@@ -40,10 +41,13 @@ public class FiveFixClientProxy extends FiveFixCommonProxy {
 //            Keyboard.KEY_9
 //        };
 
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < 9; i++) // loop to set default hotbar binds
             hotbarBinds[i] = new KeyBinding("Hotbar Slot " + (i + 1), (i + 2));
 
-        KeyBindingRegistry.registerKeyBinding(new FiveFixKeyHandler());
+        bindF5 = new KeyBinding("Perspective", 63); // default F5 bind
+        bindF3 = new KeyBinding("Debug", 61); // default F3 bind
+
+        KeyBindingRegistry.registerKeyBinding(new FiveFixHotbarKeyHandler());
         TickRegistry.registerTickHandler(new FiveFixTickHandler(), Side.CLIENT);
     }
 }
