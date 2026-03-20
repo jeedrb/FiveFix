@@ -1,3 +1,23 @@
-# Project exclude paths
-/.gradle/
-/build/
+# Core Junk
+.gradle/
+build/
+bin/
+out/
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Minecraft & Voldeloom Assets (The 700+ files)
+run/
+assets/
+lib/
+libraries/
+versions/
+natives/
+*.jar
+*.zip
+
+# Logs and temp files
+*.log
+*.txt
