@@ -6,6 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.EnumOptions;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraftforge.common.MinecraftForge;
 
 public class FiveFixClientProxy extends FiveFixCommonProxy {
     public static final EnumOptions[] target;
@@ -38,5 +39,7 @@ public class FiveFixClientProxy extends FiveFixCommonProxy {
 
         KeyBinding[] utilBinds = {bindF5, bindF3};
         KeyBindingRegistry.instance().registerKeyBinding(new FiveFixUtilKeyHandler(utilBinds));
+
+        MinecraftForge.EVENT_BUS.register(new FiveFixSoundHandler());
     }
 }
