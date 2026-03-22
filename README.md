@@ -2,6 +2,9 @@ GPLv3
 
 Backporting some modern conveniences to Minecraft Forge 1.5.2.
 
+0.3.1:
+- Added placement sounds for Cocoa Beans and Nether Wart
+
 0.3.0:
 - Added placement sounds for Doors, Beds, Signs, Crops, and Skulls
 

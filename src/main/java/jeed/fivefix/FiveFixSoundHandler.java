@@ -9,7 +9,7 @@ import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public class FiveFixSoundHandler {
-    private static final String soundArray[] = {
+    private static final String[] soundArray = {
         "", // 0 BLANK
         "dig.wood", // 1 WOOD
         "dig.cloth", // 2 CLOTH/WOOL
@@ -38,11 +38,11 @@ public class FiveFixSoundHandler {
                 double y = (double)event.y + 0.5D;
                 double z = (double)event.z + 0.5D;
 
-                if (heldItem == Item.doorWood || heldItem == Item.bed || heldItem == Item.sign) {
+                if (heldItem == Item.doorWood || heldItem == Item.bed || heldItem == Item.sign || (heldItem == Item.dyePowder && heldStack.getItemDamage() == 3)) {
                     soundCategory = 1;
                 } else if (heldItem == Item.seeds || heldItem.itemID == Block.waterlily.blockID || heldItem == Item.carrot || heldItem == Item.potato) {
                     soundCategory = 3;
-                } else if (heldItem == Item.doorIron || heldItem == Item.skull) {
+                } else if (heldItem == Item.doorIron || heldItem == Item.skull || heldItem == Item.netherStalkSeeds) {
                     soundCategory = 4;
                 } else {
                     return;
