@@ -3,7 +3,7 @@
     "modid": "fivefix",
     "name": "FiveFix",
     "description": "Some small additions to 1.5.2",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "mcversion": "1.5.2",
     "url": "",
     "updateUrl": "",

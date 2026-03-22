@@ -13,7 +13,7 @@ public class FiveFixTickHandler implements ITickHandler {
 
     @Override
     public void tickStart(EnumSet<TickType> type, Object... tickData) {
-        // Leave this empty
+        // nothing ig
     }
 
     @Override
